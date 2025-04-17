@@ -16,7 +16,10 @@ const config: Config = {
       colors:{
         myNewSky:"#C3BEFA",
         myNewSkyLight:"#EDF9FD",
-
+        myPurple:"#CFCEFF",
+        myPurpleLight:"#F1F0FF",
+        myYellow:"#FAE27C",
+        myYellowLight:"#FEFCE8",
       }
     },
   },
