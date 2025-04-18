@@ -1,88 +1,74 @@
-// import React, { PureComponent } from 'react';
 import Image from 'next/image';
+import React from 'react';
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
-  {
-    name: '18-24',
-    uv: 31.47,
-    pv: 2400,
-    fill: '#8884d8',
-  },
-  {
-    name: '25-29',
-    uv: 26.69,
-    pv: 4567,
-    fill: '#83a6ed',
-  },
-  {
-    name: '30-34',
-    uv: 15.69,
-    pv: 1398,
-    fill: '#8dd1e1',
-  },
-  {
-    name: '35-39',
-    uv: 8.22,
-    pv: 9800,
-    fill: '#82ca9d',
-  },
-  {
-    name: '40-49',
-    uv: 8.63,
-    pv: 3908,
-    fill: '#a4de6c',
-  },
-  {
-    name: '50+',
-    uv: 2.63,
-    pv: 4800,
-    fill: '#d0ed57',
-  },
-  {
-    name: 'unknow',
-    uv: 6.67,
-    pv: 4800,
-    fill: '#ffc658',
-  },
+  { name: 'Boys', uv: 55, fill: '#8884d8' },
+  { name: 'Girls', uv: 45, fill: '#ffc658' },
 ];
 
-const style = {
-  top: '50%',
-  right: 0,
-  transform: 'translate(0, -50%)',
-  lineHeight: '24px',
-};
 const CountChart = () => {
   return (
-    <div className="bg-white rounded-xl w-full h-full">
-      {/* TITLE */}
-      <div className="flex justify-between items-center">
-        <h1>Students</h1>
-        <Image src="/moreDark.png" alt='' width={20} height={20} />
+    <div className="bg-white rounded-xl w-full h-full p-4">
+      {/* Title */}
+      <div className="flex justify-between items-center mb-4">
+        <h1 className='text-lg font-semibold'>Students</h1>
+        <Image src="/moreDark.png" alt="More Options" width={20} height={20} />
       </div>
 
-      {/* CHART */}
-
-      <div className="">
-      {/* <ResponsiveContainer width="100%" height="100%">
-        <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data}>
-          <RadialBar
-            minAngle={15}
-            label={{ position: 'insideStart', fill: '#fff' }}
-            background
-            clockWise
-            dataKey="uv"
-          />
-          <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={style} />
-        </RadialBarChart>
-      </ResponsiveContainer> */}
+      {/* Chart */}
+      <div className="w-full h-[250px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <RadialBarChart
+            cx="50%"
+            cy="50%"
+            innerRadius="10%"
+            outerRadius="80%"
+            barSize={10}
+            data={data}
+            startAngle={180}
+            endAngle={0}
+          >
+            <RadialBar
+              minAngle={15}
+              label={{ position: 'insideStart', fill: '#fff' }}
+              background
+              clockWise
+              dataKey="uv"
+            />
+            <Legend
+              iconSize={10}
+              layout="vertical"
+              verticalAlign="middle"
+              wrapperStyle={{
+                right: 0,
+                top: '50%',
+                transform: 'translate(0, -50%)',
+              }}
+            />
+          </RadialBarChart>
+        </ResponsiveContainer>
       </div>
-      {/* BOTTOM */}
-      <div className=""></div>
 
+      {/* Bottom Stats */}
+      <div className="flex justify-center gap-16 mt-6">
+        <div className='flex items-center gap-2'>
+          <div className='w-4 h-4 bg-[#8884d8] rounded-full'></div>
+          <div>
+            <h1 className='font-bold'>1,234</h1>
+            <h2 className='text-sm text-gray-500'>Boys (55%)</h2>
+          </div>
+        </div>
+        <div className='flex items-center gap-2'>
+          <div className='w-4 h-4 bg-[#ffc658] rounded-full'></div>
+          <div>
+            <h1 className='font-bold'>1,012</h1>
+            <h2 className='text-sm text-gray-500'>Girls (45%)</h2>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default CountChart
+export default CountChart;
