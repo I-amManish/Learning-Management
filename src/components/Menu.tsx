@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+// TODO: Pass user role here to filter visible items
+const userRole = "admin"; // Just for demo — replace with actual logic
+
 const menuItems = [
   {
     title: "MENU",
@@ -120,19 +123,21 @@ const Menu = () => {
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((section) => (
-        <div key={section.title} className="flex flex-col gap-2">
-          <span className="hidden lg:block text-gray-400 font-light my-4">{section.title}</span>
+        <div key={section.title} className="flex flex-col gap-2 mb-4 ml-0 lg:ml-4">
+          <span className="hidden lg:block text-gray-400 font-light">{section.title}</span>
           <div className="mt-2 flex flex-col gap-1">
-            {section.items.map((item) => (
-              <Link
-                href={item.href}
-                key={item.label}
-                className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2"
-              >
-                <Image src={item.icon} alt={item.label} width={20} height={20} />
-                <span className="hidden lg:block">{item.label}</span>
-              </Link>
-            ))}
+            {section.items
+              .filter((item) => item.visible.includes(userRole)) // Optional: Role filter
+              .map((item) => (
+                <Link
+                  href={item.href}
+                  key={item.label}
+                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 px-2 rounded-md hover:bg-gray-100 transition-colors duration-200"
+                >
+                  <Image src={item.icon} alt={item.label} width={20} height={20} />
+                  <span className="hidden lg:block">{item.label}</span>
+                </Link>
+              ))}
           </div>
         </div>
       ))}
