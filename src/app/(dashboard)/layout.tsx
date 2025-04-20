@@ -26,7 +26,7 @@ export default function DashboardLayout({
               height={32}
               className="min-w-[32px]"
             />
-            <span className="hidden lg:block font-semibold text-lg">
+            <span className="hidden lg:block font-bold">
               School Name
             </span>
           </Link>
@@ -42,3 +42,5 @@ export default function DashboardLayout({
     </>
   );
 }
+
+// timestamp: 1:20:06
